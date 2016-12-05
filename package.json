@@ -1,0 +1,29 @@
+{
+  "name": "mailbin",
+  "version": "1.0.0",
+  "description": "NodeJS client for http://mailb.in",
+  "main": "index.js",
+  "scripts": {
+    "test": "semistandard && mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaliy/node-mailbin.git"
+  },
+  "dependencies": {
+    "node-fetch": "^1.6.3",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "copyfiles": "^1.0.0",
+    "mocha": "^3.2.0",
+    "semistandard": "^9.1.0"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chaliy/node-mailbin/issues"
+  },
+  "homepage": "https://github.com/chaliy/node-mailbin#readme"
+}
