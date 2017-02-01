@@ -1,26 +1,12 @@
-# Mailbin client
+const expect = require('chai').expect;
 
-NodeJS client for http://mailb.in
-
-## Installation
-
-```
-$ npm install mailbin --save
-```
-
-Or with Yarn
-
-```
-$ yarn add mailbin
-```
-
-## Usage
-
-```
 const nodemailer = require('nodemailer');
-const mailbin = require('mailbin');
+const mailbin = require('..');
 
-const smtp = nodemailer.createTransport('smtps://username%40gmail.com:password@smtp.gmail.com');
+const INTEGRATION_SMTP_CONNECTION = process.env.INTEGRATION_SMTP_CONNECTION;
+const INTEGRATION_EMAIL_ADDRESS = process.env.INTEGRATION_EMAIL_ADDRESS;
+
+const smtp = nodemailer.createTransport(INTEGRATION_SMTP_CONNECTION);
 
 describe('send', function(){
   this.timeout(5000);
@@ -30,7 +16,7 @@ describe('send', function(){
   it('should send', () => {
     return smtp
       .sendMail({
-        from: 'username@gmail.com',
+        from: INTEGRATION_EMAIL_ADDRESS,
         to: bin.email,
         subject: 'Hello!',
         text: 'Hello!',
@@ -42,9 +28,3 @@ describe('send', function(){
       });
   });
 });
-
-```
-
-## License
-
-MIT

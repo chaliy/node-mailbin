@@ -4,7 +4,8 @@
   "description": "NodeJS client for http://mailb.in",
   "main": "index.js",
   "scripts": {
-    "test": "semistandard && mocha"
+    "test": "semistandard && mocha",
+    "integration": "mocha integration --recursive"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
     "chai": "^3.5.0",
     "copyfiles": "^1.0.0",
     "mocha": "^3.2.0",
+    "nodemailer": "^3.0.0",
     "semistandard": "^9.1.0"
   },
   "author": "",

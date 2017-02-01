@@ -17,11 +17,11 @@ const retry = (factory) => {
   };
 
   return attempt();
-}
+};
 
 const client = (options) => {
   options = Object.assign({
-    api: 'https://nnh6uke7m5.execute-api.eu-west-1.amazonaws.com/production/',
+    api: 'https://api.mailb.in',
     domain: 'mailb.in'
   }, options);
 
@@ -29,11 +29,10 @@ const client = (options) => {
                             .then(res => res.json());
 
   const fetchMessage = bin => {
-
     return retry(() => {
       return fetchMessages(bin)
         .then(inbox => {
-          if (inbox.length === 0){
+          if (inbox.length === 0) {
             throw new Error(`Inbox ${bin} doesn't yet have messages`);
           }
           return inbox[0];
@@ -47,8 +46,8 @@ const client = (options) => {
     fetchMessages,
     fetchMessage,
     address
-  }
-}
+  };
+};
 
 const nextBin = (client, slug) => {
   let bin = slug ? `${slug}+${uuid()}` : uuid();
@@ -58,17 +57,16 @@ const nextBin = (client, slug) => {
     email: client.address(bin),
     fetchMessages: () => client.fetchMessages(bin),
     fetchMessage: () => client.fetchMessage(bin)
-  }
-}
-
+  };
+};
 
 module.exports = options => {
   let c = client(options);
   return {
     nextBin: slug => nextBin(c, slug),
     fetchMessages: slug => fetchMessages(c, bin),
-    fetchMessages: slug => fetchMessages(c, bin),
-  }
+    fetchMessages: slug => fetchMessages(c, bin)
+  };
 };
 
 let cachedClient;
